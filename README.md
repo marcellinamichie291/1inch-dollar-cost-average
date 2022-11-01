@@ -1,7 +1,5 @@
 # 1inch-dollar-cost-average
 
-# 1inch-bot
-
 1inch exchange trade bot that dollar cost averages the dips once every hour/day/week
 
 # configuring the app
@@ -17,12 +15,17 @@ copy the `.env-example` and rename it to `.env`, adjust the values.
 ```
 PUBLIC_KEY=""
 PRIVATE_KEY=""
-REFRESH_INTERVAL=10000
-TRADEPAIRS=['WETHUSDC','WBTCUSDC']
+# forced time interval (minutes) between buys
+REFRESH_INTERVAL=10000 
+# tradepairs on 1inch
+PAIRS_1INCH=["WBTCUSDC", "SNXUSDC", "MATICUSDC"]
+# corresponding pairs on binance
+PAIRS_BINANCE=["BTCUSDT", "SNXUSDT", "MATICUSDT"]
 DOLLAR_AMOUNT_PER_PURCHASE=10
 MINUTES_BEFORE_NEXT_PURCHASE=60 * 24
 PURCHASE_DIPS=true
-CANDLES_TIMEFRAME=1h
+CANDLES_TIMEFRAME=5m
+POLYGONSCAN_API_KEY=""
 ```
 
 ## hook it up to your wallet
