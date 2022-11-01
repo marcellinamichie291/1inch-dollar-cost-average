@@ -61,20 +61,17 @@ export class Main {
       if (ticker.token.address) {
         if (ticker.lastTradeDate < Date.now() - REFRESH_INTERVAL * 1000 * 60) {
           const isLong = this.trading.checkForTrade(ticker);
-          // if (isLong) {
-          this.inchApi.swap(
-            BASECURRENCY,
-            ticker.token,
-            DOLLAR_AMOUNT_PER_PURCHASE,
-            true
-          );
-          this.data.changeTickerParam(ticker.symbol_binance, {
-            lastTradeDate: Date.now(),
-          });
-          // sendPrivateTelegramMessage(
-          //   `${ticker.symbol_binance} long at ${ticker.price_binance}`
-          // );
-          // }
+          if (isLong) {
+            this.inchApi.swap(
+              BASECURRENCY,
+              ticker.token,
+              DOLLAR_AMOUNT_PER_PURCHASE,
+              true
+            );
+            sendPrivateTelegramMessage(
+              `Bought $${DOLLAR_AMOUNT_PER_PURCHASE} of ${ticker.symbol_binance} at ${ticker.price_binance}`
+            );
+          }
         }
       }
     });
