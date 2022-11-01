@@ -65,6 +65,7 @@ export class InchApi {
     chain: Chain | string = Chain.Polygon
   ): Promise<string> {
     try {
+      //TODO: clean code -callback hell
       const wei = new BigNumber(amount).shiftedBy(fromToken.decimals).toFixed();
       console.log(wei);
       const url = getSwapUrl(
